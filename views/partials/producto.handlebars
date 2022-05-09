@@ -1,0 +1,15 @@
+<div class="col-md-4 mx-3 my-4 mx-auto">
+    <div class="card border-0" onclick="agregar(this.id)" id="{{this}}">
+        <img id="producto" src="/img/{{this}}.png" class="card-img-top mx-auto d-block" alt="{{this}}">
+        <div class="card-body">
+            <h5 class="card-title text-capitalize">{{this}}</h5>
+        </div>
+    </div>
+</div>
+
+<style>
+    #producto {
+        height: 150px !important;
+        width: 150px !important;
+    }
+</style>

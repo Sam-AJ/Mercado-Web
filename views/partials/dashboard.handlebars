@@ -1,10 +1,29 @@
-<div class="modal-body">
-    <div class="container-fluid">
+<main class="container text-center">
+    <h1 class="my-3">Bienvenid@ al mercado WEB, seleccione sus productos</h1>
+
+    <section class="container">
         <div class="row">
-            <div class="col-md-4">
-
-            </div>
-
+            {{#each productos }}
+                {{> producto }}
+            {{/each}}
         </div>
-    </div>
-</div>
+    </section>
+</main>
+
+{{> modal }}
+
+<script>
+    let carrito = []
+    const agregar = (id) => {
+        carrito.push(id);
+        console.log(carrito);
+        $("#modal").html("");
+        carrito.forEach(producto => {
+            $("#modal").append(`
+                <div class="col-md-4 px-2">
+                    <img class="img-fluid" src="/img/${producto}.png" alt="${producto}">
+                </div>
+            `);
+        })
+    }
+</script>
