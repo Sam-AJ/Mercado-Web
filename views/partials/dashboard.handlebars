@@ -4,26 +4,10 @@
     <section class="container">
         <div class="row">
             {{#each productos }}
-                {{> producto }}
+            {{> producto }}
             {{/each}}
         </div>
     </section>
 </main>
 
 {{> modal }}
-
-<script>
-    let carrito = []
-    const agregar = (id) => {
-        carrito.push(id);
-        console.log(carrito);
-        $("#modal").html("");
-        carrito.forEach(producto => {
-            $("#modal").append(`
-                <div class="col-md-4 px-2">
-                    <img class="img-fluid" src="/img/${producto}.png" alt="${producto}">
-                </div>
-            `);
-        })
-    }
-</script>

@@ -1,6 +1,6 @@
 <div class="col-md-4 mx-3 my-4 mx-auto">
-    <div class="card border-0" onclick="agregar(this.id)" id="{{this}}">
-        <img id="producto" src="/img/{{this}}.png" class="card-img-top mx-auto d-block" alt="{{this}}">
+    <div class="card border-0" onclick="agregarQuitar(this.id)" id="{{this}}">
+        <img src="/img/{{this}}.png" class="producto card-img-top mx-auto d-block" data-nombre="{{this}}" alt="{{this}}">
         <div class="card-body">
             <h5 class="card-title text-capitalize">{{this}}</h5>
         </div>
@@ -8,8 +8,14 @@
 </div>
 
 <style>
-    #producto {
+    .producto {
         height: 150px !important;
         width: 150px !important;
+        cursor: pointer;
+    }
+
+    .seleccionado {
+        opacity: 0.3;
+        transform: scale(.9);
     }
 </style>

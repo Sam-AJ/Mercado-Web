@@ -1,19 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/768675d79e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/47ca942560.js" crossorigin="anonymous"></script>
     <title>Come Sano, Come Fresco Spa”</title>
 </head>
+
 <body>
     {{> menu }}
 
-    {{>dashboard }}
-    
+    {{> dashboard }}
+
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="jquery/jquery.min.js"></script>
+    <script>
+        let carrito = [];
+
+        $(document).on("click", ".producto", function () {
+            if ($(this).hasClass("seleccionado")) {
+                $(this).removeClass("seleccionado")
+            } else {
+                $(this).addClass("seleccionado")
+            }
+        })
+
+        const agregarQuitar = (id) => {
+            let busqueda = carrito.findIndex(producto => producto == id);
+            if (busqueda == -1) {
+                carrito.push(id);
+                console.log(carrito);
+                $("#modal").html("");
+                carrito.forEach(producto => {
+                    $("#modal").append(`
+                    <div class="col-md-4 px-2">
+                        <img class="img-fluid" src="/img/${producto}.png" onclick="quitar(this.alt)" alt="${producto}">
+                    </div>
+                `);
+                })
+            } else {
+                carrito.splice(busqueda, 1);
+                console.log(carrito);
+                $("#modal").html("");
+                carrito.forEach(producto => {
+                    $("#modal").append(`
+                    <div class="col-md-4 px-2">
+                        <img class="img-fluid" src="/img/${producto}.png" onclick="quitar(this.alt)" alt="${producto}">
+                    </div>
+                `);
+                })
+
+            }
+
+        };
+
+        const quitar = (alt) => {
+
+            let product = $(".producto")
+            
+            for (let index = 0; index < product.length; index++) {
+                if ($(product[index]).data("nombre") == alt){
+                    $(product[index]).removeClass("seleccionado")
+                }
+            }
+            console.log($(".producto"))
+            let busqueda = carrito.findIndex(producto => producto == alt);
+            carrito.splice(busqueda, 1);
+            console.log(carrito);
+            $("#modal").html("");
+            carrito.forEach(producto => {
+                $("#modal").append(`
+                <div class="col-md-4 px-2">
+                    <img class="img-fluid" src="/img/${producto}.png" onclick="quitar(this.alt)" alt="${producto}">
+                </div>
+            `);
+            })
+        };
+    </script>
 </body>
+
 </html>
